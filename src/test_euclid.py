@@ -1,5 +1,3 @@
-import pytest
-
 from euclid import gcd
 
 def test_gcd():

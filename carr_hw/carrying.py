@@ -40,3 +40,9 @@ try:
     sum_uncurry(1, 2)
 except TypeError as e:
     print(f"\Ошибка при раскаррировании: {e}")
+
+def sum_three(a, b, c):
+    return a + b + c
+
+def multiply_four(a, b, c, d):
+    return a * b * c * d

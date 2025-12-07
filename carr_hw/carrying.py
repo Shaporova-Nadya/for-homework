@@ -1,18 +1,23 @@
 def curry(func, arity):
     if arity < 0:
-        raise ValueError('Арность не может быть меньше нуля')
-    def func1(*args):
-        if len(args)  == arity:
-            return func(*args)
-        def func2(*args2):
-            return func1 (*(args + args2))
-        return func2
-    return func1
+        raise ValueError("Арность не может быть меньше нуля")
+
+    def build_curried_func(collected_args): 
+        if len(collected_args) == arity:
+            return func(*collected_args)
+        else:
+            def next_arg_func(arg):
+                if len(collected_args) + 1 > arity:  
+                    raise TypeError(f"Лишний аргумент: {arg}")
+                return build_curried_func(collected_args + (arg,))
+            return next_arg_func
+    return build_curried_func(tuple())
+
 
 
 def uncurry(func, arity):
     if arity < 0:
-        raise ValueError('Арность не может быть меньше нуля')
+        raise ValueError("Арность не может быть меньше нуля")
 
     def uncurried_func(*args):
         if len(args) != arity:
@@ -23,25 +28,7 @@ def uncurry(func, arity):
         return result
     return uncurried_func
 
-def sum(a, b, c):
-    return a + b + c
-
-sum_curry = curry(sum, 3)
-print(sum_curry(1)(2)(3))
-sum_uncurry = uncurry(sum_curry, 3)
-print(sum_uncurry(1, 2, 3))
-
-try:
-    curry(sum, -2)
-except ValueError as e:
-    print(f"\Ошибка при каррировании: {e}")
-
-try:
-    sum_uncurry(1, 2)
-except TypeError as e:
-    print(f"\Ошибка при раскаррировании: {e}")
-
-def sum_three(a, b, c):
+def sum_three_args(a, b, c): 
     return a + b + c
 
 def multiply_four(a, b, c, d):

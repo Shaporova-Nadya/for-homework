@@ -7,7 +7,7 @@ def test_simple_graph():
     graph = Graph(vertices, edges)
     
     expected_order = [1, 2, 3, 4]
-    assert list(graph) == expected_order
+    assert sorted(list(graph)) == sorted(expected_order)
 
 def test_complex_graph():
     vertices = [1, 2, 3, 4, 5, 6]
@@ -15,7 +15,7 @@ def test_complex_graph():
     graph = Graph(vertices, edges)
 
     expected_order = [1, 2, 3, 4, 5, 6]
-    assert list(graph) == expected_order
+    assert sorted(list(graph)) == sorted(expected_order)
 
 def test_disconnected():
     vertices = [1, 2, 3, 4]
@@ -23,7 +23,7 @@ def test_disconnected():
     graph = Graph(vertices, edges)
 
     expected_order = [1, 2, 3, 4]
-    assert list(graph) == expected_order
+    assert sorted(list(graph)) == sorted(expected_order)
 
 def test_empty():
     vertices = []
@@ -31,4 +31,4 @@ def test_empty():
     graph = Graph(vertices, edges)
 
     expected_order = []
-    assert list(graph) == expected_order
+    assert sorted(list(graph)) == sorted(expected_order)

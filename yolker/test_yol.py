@@ -7,4 +7,4 @@ def test_get_random():
     
     for _ in range(100):
         result = yolker.get_random()
-        assert result in ["Head", "Tail"]
+        assert result in ["A", "B"]
